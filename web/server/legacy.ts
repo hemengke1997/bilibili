@@ -69,7 +69,7 @@ export async function legacyHtml(pageContext: any, html: string) {
     for (let i = 0; i < ks.length; i++) {
       const { file, isEntry } = manifest[ks[i]]
       const parsed = path.parse(file)
-      const realName = parsed.name.slice(0, parsed.name.indexOf('.'))
+      const realName = parsed.name?.slice(0, parsed.name.indexOf('.'))
       if (realName.includes('polyfills-legacy') && isEntry) {
         tags.push({
           tag: 'script',
@@ -90,7 +90,7 @@ export async function legacyHtml(pageContext: any, html: string) {
       const k = ks[i]
       const parsed = path.parse(entryJs.src)
 
-      const entryJsName = parsed.name.slice(0, parsed.name.indexOf('.'))
+      const entryJsName = parsed.name?.slice(0, parsed.name.indexOf('.'))
 
       const target = manifest[k].file as string
 

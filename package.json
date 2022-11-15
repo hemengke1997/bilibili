@@ -2,12 +2,13 @@
   "name": "vite-react-ssr-boilerplate",
   "version": "1.0.0",
   "scripts": {
-    "dev": "pnpm -r --parallel run dev",
+    "dev": "pnpm -r run dev",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
     "lint": "eslint . --fix"
   },
   "devDependencies": {
+    "concurrently": "^7.5.0",
     "tsx": "^3.12.1"
   },
   "type": "module",

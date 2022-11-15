@@ -4,8 +4,10 @@ importers:
 
   .:
     specifiers:
+      concurrently: ^7.5.0
       tsx: ^3.12.1
     devDependencies:
+      concurrently: registry.npmmirror.com/concurrently/7.5.0
       tsx: registry.npmmirror.com/tsx/3.12.1
 
   web:
@@ -2772,6 +2774,24 @@ packages:
     name: concat-map
     version: 0.0.1
 
+  registry.npmmirror.com/concurrently/7.5.0:
+    resolution: {integrity: sha512-5E3mwiS+i2JYBzr5BpXkFxOnleZTMsG+WnE/dCG4/P+oiVXrbmrBwJ2ozn4SxwB2EZDrKR568X+puVohxz3/Mg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/concurrently/-/concurrently-7.5.0.tgz}
+    name: concurrently
+    version: 7.5.0
+    engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      chalk: registry.npmmirror.com/chalk/4.1.2
+      date-fns: registry.npmmirror.com/date-fns/2.29.3
+      lodash: registry.npmmirror.com/lodash/4.17.21
+      rxjs: registry.npmmirror.com/rxjs/7.5.7
+      shell-quote: registry.npmmirror.com/shell-quote/1.7.4
+      spawn-command: registry.npmmirror.com/spawn-command/0.0.2-1
+      supports-color: registry.npmmirror.com/supports-color/8.1.1
+      tree-kill: registry.npmmirror.com/tree-kill/1.2.2
+      yargs: registry.npmmirror.com/yargs/17.5.1
+    dev: true
+
   registry.npmmirror.com/consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/consola/-/consola-2.15.3.tgz}
     name: consola
@@ -2929,7 +2949,6 @@ packages:
     name: date-fns
     version: 2.29.3
     engines: {node: '>=0.11'}
-    dev: false
 
   registry.npmmirror.com/dayjs/1.11.6:
     resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.6.tgz}
@@ -7799,6 +7818,12 @@ packages:
     version: 3.0.0
     engines: {node: '>=8'}
 
+  registry.npmmirror.com/shell-quote/1.7.4:
+    resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shell-quote/-/shell-quote-1.7.4.tgz}
+    name: shell-quote
+    version: 1.7.4
+    dev: true
+
   registry.npmmirror.com/shelljs/0.8.5:
     resolution: {integrity: sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shelljs/-/shelljs-0.8.5.tgz}
     name: shelljs
@@ -7966,6 +7991,12 @@ packages:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
     name: sourcemap-codec
     version: 1.4.8
+    dev: true
+
+  registry.npmmirror.com/spawn-command/0.0.2-1:
+    resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/spawn-command/-/spawn-command-0.0.2-1.tgz}
+    name: spawn-command
+    version: 0.0.2-1
     dev: true
 
   registry.npmmirror.com/spdx-correct/3.1.1:
@@ -8184,6 +8215,15 @@ packages:
     dependencies:
       has-flag: registry.npmmirror.com/has-flag/4.0.0
 
+  registry.npmmirror.com/supports-color/8.1.1:
+    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/supports-color/-/supports-color-8.1.1.tgz}
+    name: supports-color
+    version: 8.1.1
+    engines: {node: '>=10'}
+    dependencies:
+      has-flag: registry.npmmirror.com/has-flag/4.0.0
+    dev: true
+
   registry.npmmirror.com/supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz}
     name: supports-preserve-symlinks-flag
@@ -8321,6 +8361,13 @@ packages:
     version: 3.0.0
     engines: {node: '>=6'}
     dev: false
+
+  registry.npmmirror.com/tree-kill/1.2.2:
+    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tree-kill/-/tree-kill-1.2.2.tgz}
+    name: tree-kill
+    version: 1.2.2
+    hasBin: true
+    dev: true
 
   registry.npmmirror.com/tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz}

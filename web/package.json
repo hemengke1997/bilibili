@@ -1,9 +1,10 @@
 {
-  "name": "vite-react-ssr-boilerplate",
+  "name": "web",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx scripts/dev.ts",
+    "dev": "pnpm run ssr",
+    "dev:t": "tsx scripts/dev.ts",
     "ssr": "cross-env NODE_ENV=development tsx server/index.ts",
     "start:prod": "cross-env NODE_ENV=production tsx server/index.ts",
     "start:test": "cross-env NODE_ENV=test tsx watch server/index.ts",
