@@ -147,8 +147,8 @@ function listen(app: Application, _port: number) {
   const server = app.listen(port, HOST)
 
   server.on('listening', () => {
-    const { Start_Page } = process.env
-    const page = Start_Page ? `/${Start_Page}` : ''
+    const { START_PAGE } = process.env
+    const page = START_PAGE ? `/${START_PAGE}` : ''
 
     const pathUrl = normalizeUrl(`http:\/\/${HOST}:${port}${getBase()}${page}`, { normalizeProtocol: false })
 

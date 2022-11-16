@@ -1,0 +1,8 @@
+{
+  "extends": "@minko-fe/tsconfig/tsconfig.project.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noImplicitAny": true
+  },
+  "exclude": ["node_modules", "**/*.js"]
+}

@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios'
 import { isString } from 'lodash-es'
 import querystring from 'query-string'
-import { isDevMode } from '@root/shared/env'
+import { isDev } from '@root/shared/env'
 import { isBrowser } from '@root/shared'
 import normalizeUrl from 'normalize-url'
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform'
@@ -104,7 +104,7 @@ const transform: AxiosTransform = {
   requestInterceptors: (config, options) => {
     config.headers = Object.assign({}, config.headers)
     config.headers.Accept = config.headers.accept
-    if (isDevMode()) {
+    if (isDev()) {
       config.headers.UserAgent = 'terminal_type/system_type/system_version/channel/lagofast/1.0.0/terminal_code/lang'
     }
     delete config.headers.accept

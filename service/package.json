@@ -1,0 +1,24 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development tsx watch app"
+  },
+  "type": "module",
+  "author": "hemengke1997 <https://github.com/hemengke1997>",
+  "license": "MIT",
+  "dependencies": {
+    "connect-history-api-fallback": "^2.0.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "dotenv-expand": "^5.1.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/express-session": "^1.17.5",
+    "cross-env": "^7.0.3",
+    "tsx": "^3.12.1"
+  }
+}

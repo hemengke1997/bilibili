@@ -1,0 +1,11 @@
+{
+  "extends": "@minko-fe/tsconfig/tsconfig.project.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["ESNext"],
+    "strict": false,
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": false
+  },
+  "exclude": ["node_modules", "dist", "**/*.js", "../web/**/*"]
+}

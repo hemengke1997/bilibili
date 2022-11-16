@@ -2,12 +2,12 @@ import { renderToString } from 'react-dom/server'
 import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 import { dangerouslySkipEscape, escapeInject } from 'vite-plugin-ssr'
 import { getBase, getLibAssets } from '@root/shared'
-import { isProdMode } from '@root/shared/env'
+import { isProd } from '@root/shared/env'
 import manifestPublicTs from '../publicTypescript/manifest.json'
 import { createApp } from './createApp'
 
 function setupVconsole(isMobile?: boolean) {
-  if (!isProdMode() && isMobile) {
+  if (!isProd() && isMobile) {
     return escapeInject/* html */ `
     <script src="https://cdn.jsdelivr.net/npm/vconsole@latest/dist/vconsole.min.js"></script>
     <script>

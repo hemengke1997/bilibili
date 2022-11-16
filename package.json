@@ -5,19 +5,25 @@
     "dev": "pnpm -r run dev",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
-    "lint": "eslint . --fix"
+    "lint": "eslint --fix --cache .",
+    "bump:deps": "pnpm update --i --L"
   },
   "devDependencies": {
-    "concurrently": "^7.5.0",
-    "tsx": "^3.12.1"
+    "@minko-fe/commitlint-config": "^1.2.3",
+    "@minko-fe/eslint-config": "^1.2.3",
+    "@minko-fe/prettier-config": "^1.2.3",
+    "@minko-fe/tsconfig": "^1.2.3",
+    "eslint": "^8.27.0",
+    "eslint-define-config": "^1.12.0",
+    "lint-staged": "^13.0.3",
+    "picocolors": "^1.0.0",
+    "prettier": "^2.7.1",
+    "simple-git-hooks": "^2.8.1"
   },
   "type": "module",
   "simple-git-hooks": {
-    "dev": "",
     "pre-commit": "pnpm exec lint-staged --concurrent false",
-    "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1",
-    "lint": "eslint --cache .",
-    "bump:deps": "pnpm update --i --L"
+    "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1"
   },
   "lint-staged": {
     "*": [
@@ -38,5 +44,8 @@
     "vite ssr"
   ],
   "description": "ssr boilerplate based on vite/vite-plugin-ssr/react",
-  "license": "MIT"
+  "license": "MIT",
+  "volta": {
+    "node": "18.12.0"
+  }
 }

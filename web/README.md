@@ -1,8 +1,4 @@
-# vite + ssr
-
-## Intro
-
-ssr boilerplate based on vite/vite-plugin-ssr/react
+# 前端服务
 
 ## development
 
@@ -51,7 +47,7 @@ pnpm run pm2:prod
 ## 项目结构树
 
 ```
-vite-react-ssr-boilerplate
+web
 ├─ config                                                 关于项目的build/node相关配置
 ├─ public                                                 公共目录（build会直接copy）
 ├─ publicTypescript                                       typescript公共目录（build会编译后copy）

@@ -4,10 +4,11 @@
     "baseUrl": ".",
     "types": ["vite/client"],
     "noImplicitAny": false,
+    "useUnknownInCatchVariables": false,
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
     }
   },
-  "exclude": ["node_modules", "dist", "**/*.js"]
+  "exclude": ["node_modules", "dist", "**/*.js", "../service/**/*"]
 }
