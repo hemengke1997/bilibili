@@ -154,7 +154,7 @@ function listen(app: Application, _port: number) {
 
     clearScreen()
 
-    log.info(`\n🚀 [${process.env.NODE_ENV}]: Server running at ${colors.underline(colors.blue(pathUrl))}\n`)
+    log.info(`\n🚀 [前端服务${process.env.NODE_ENV}]: Server running at ${colors.underline(colors.blue(pathUrl))}\n`)
   })
 
   server.on('error', (error) => {

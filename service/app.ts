@@ -5,6 +5,9 @@ import history from 'connect-history-api-fallback'
 import { loadEnv } from 'utils/loadEnv'
 import { wrapperEnv } from 'utils/env'
 import { router } from 'routes'
+import colors from 'picocolors'
+import { log } from 'utils/log'
+import normalizeUrl from 'normalize-url'
 
 const app = express()
 
@@ -12,17 +15,25 @@ const env = loadEnv(process.env.NODE_ENV, '.')
 
 wrapperEnv(env)
 
+const HOST = 'localhost'
+const PORT = process.env.SERVICE_PORT
+
 // 响应头
 app.all('*', (req, res, next) => {
-  const { origin, referer } = req.headers
-  // https://developer.mozilla.org/en-US/docs/Web/HTTP
-  const allowOrigin = origin || referer || '*'
-  // cors
-  res.header('Access-Control-Allow-Origin', allowOrigin)
+  if (req.path !== '/') {
+    const { origin, referer } = req.headers
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP
+    const allowOrigin = origin || referer || '*'
+    // cors
+    res.set({
+      'Access-Control-Allow-Origin': allowOrigin,
+      'Access-Control-Allow-Headers': ['Content-Type', 'Authorization', 'X-Requested-With'],
+      'Access-Control-Allow-Methods': ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
+      'Access-Control-Allow-Credentials': true,
+      'Content-Type': 'application/json; charset=utf-8',
+    })
+  }
 
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
-  res.header('Access-Control-Allow-Credentials', '*')
   if (req.method === 'OPTIONS') {
     res.sendStatus(200)
   } else {
@@ -30,12 +41,18 @@ app.all('*', (req, res, next) => {
   }
 })
 
+/**
+ * Body Parser and File Upload
+ */
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(session(getSessionConfig()))
 
 router(app)
 
 app.use(history())
 
-app.listen(process.env.SERVICE_PORT, () => {
-  console.log(`[service]: 端口号 ${process.env.SERVICE_PORT}`)
+app.listen(PORT, () => {
+  const pathUrl = normalizeUrl(`http:\/\/${HOST}:${PORT}`, { normalizeProtocol: false })
+  log.info(`\n🚀 [后端服务${process.env.NODE_ENV}]: Server running at ${colors.underline(colors.blue(pathUrl))}\n`)
 })

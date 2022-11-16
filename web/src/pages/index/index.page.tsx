@@ -4,11 +4,9 @@ import { axiosRequest } from '@/service'
 
 export function Page() {
   const login = async () => {
-    const res = await axiosRequest.get({
+    await axiosRequest.get({
       url: '/v1/login',
     })
-
-    console.log(res, 'res')
   }
 
   useEffect(() => {}, [login()])
