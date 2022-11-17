@@ -52,6 +52,15 @@ export default ({ command, ssrBuild, mode }: ConfigEnv): UserConfig => {
       modules: {
         generateScopedName: '[local]__[hash:base64:6]',
       },
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          modifyVars: {
+            'border-radius-base': '4px',
+            'primary-color': '#FF9800',
+          },
+        },
+      },
     },
     define: {
       'process.env': process.env,

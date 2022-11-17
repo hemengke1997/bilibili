@@ -14,14 +14,6 @@ import { wrapperEnv } from '@root/config/vite/utils/helper'
 import { log } from '../scripts/utils'
 import { legacyHtml } from './legacy'
 
-function clearScreen() {
-  const repeatCount = process.stdout.rows - 2
-  const blank = repeatCount > 0 ? '\n'.repeat(repeatCount) : ''
-  console.log(blank)
-  readline.cursorTo(process.stdout, 0, 0)
-  readline.clearScreenDown(process.stdout)
-}
-
 const dir = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV === Env.development
 // const isProd = process.env.NODE_ENV === Env.production
@@ -34,7 +26,9 @@ wrapperEnv(env)
 
 const HOST = VITE_HOST
 
-const PORT = 9527
+const PORT = Number(process.env.PORT) || 9529
+
+let port = PORT
 
 async function startServer() {
   const app = express()
@@ -51,6 +45,11 @@ async function startServer() {
           },
           cors: true,
         },
+      })
+      viteDevServer.ws.on('error', (error) => {
+        catchError(error, () => {
+          listen(app)
+        })
       })
       app.use(viteDevServer.middlewares)
     })
@@ -96,10 +95,7 @@ async function startServer() {
   // support html
   app.use((req, _, next) => {
     const url = req.originalUrl
-    const isHtml = /\.html?$/gi
-    if (isHtml.test(url)) {
-      req.originalUrl = url.replace(isHtml, '')
-    }
+    req.originalUrl = url.replace(/\.html?$/gi, '')
     next()
   })
 
@@ -112,7 +108,7 @@ async function startServer() {
       }
       const pageContext: any = await renderPage(pageContextInit)
 
-      const env = process.env.NODE_ENV
+      const { NODE_ENV } = process.env
 
       const { httpResponse } = pageContext
 
@@ -126,7 +122,7 @@ async function startServer() {
 
       let html = httpResponse.body
 
-      if (!env || env !== 'development') {
+      if (!NODE_ENV || NODE_ENV !== 'development') {
         html = await legacyHtml(pageContext, html)
       }
 
@@ -137,13 +133,10 @@ async function startServer() {
     }
   })
 
-  const port = Number(process.env.PORT || PORT)
-
-  listen(app, port)
+  listen(app)
 }
 
-function listen(app: Application, _port: number) {
-  let port = _port
+function listen(app: Application) {
   const server = app.listen(port, HOST)
 
   server.on('listening', () => {
@@ -160,27 +153,40 @@ function listen(app: Application, _port: number) {
   server.on('error', (error) => {
     clearScreen()
 
-    if ((error as any).code !== 'EADDRINUSE') {
-      throw error
-    }
-
-    log.error(`❌ ${error}\n`)
-    port = port + 1
-    log.info(`🔥 open port ${port} ...\n`)
-    listen(app, port)
+    catchError(error, () => {
+      listen(app)
+    })
   })
 
-  if (!isDev) {
-    process.on('SIGINT', () => {
-      server.close(() => {
-        process.exit(0)
-      })
+  process.on('SIGINT', () => {
+    server.close(() => {
+      process.exit(0)
     })
-  }
+  })
 }
 
 try {
   startServer()
 } catch {
   process.exit(1)
+}
+
+function clearScreen() {
+  const repeatCount = process.stdout.rows - 2
+  const blank = repeatCount > 0 ? '\n'.repeat(repeatCount) : ''
+  console.log(blank)
+  readline.cursorTo(process.stdout, 0, 0)
+  readline.clearScreenDown(process.stdout)
+}
+
+function catchError(error: unknown, cb: Function) {
+  if ((error as any).code !== 'EADDRINUSE') {
+    throw error
+  }
+
+  log.error(`❌ ${error}\n`)
+  port = port + 1
+  log.info(`🔥 open port ${port} ...\n`)
+
+  cb()
 }

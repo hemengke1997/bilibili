@@ -15,7 +15,7 @@ const env = loadEnv(process.env.NODE_ENV, '.')
 
 wrapperEnv(env)
 
-const HOST = 'localhost'
+const HOST = process.env.SERVICE_HOST
 const PORT = process.env.SERVICE_PORT
 
 // 响应头
@@ -41,9 +41,6 @@ app.all('*', (req, res, next) => {
   }
 })
 
-/**
- * Body Parser and File Upload
- */
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(session(getSessionConfig()))
