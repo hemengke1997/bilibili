@@ -1,11 +1,10 @@
 import clsx from 'clsx'
 import styles from './index.module.css'
-import x from './index.module.less'
 
 export function Page() {
   return (
     <>
-      <div className={clsx('tw-italic', styles.pageA, x.test)}>
+      <div className={clsx('tw-italic', styles.pageA)}>
         <p>this is page A</p>
         <div className={styles.c1}>
           c1

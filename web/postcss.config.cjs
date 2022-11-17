@@ -1,9 +1,8 @@
 module.exports = () => {
   return {
     plugins: [
-      // require('tailwindcss/nestisng'),
-      // require('tailwindcss'),
-      require('postcss-nested'),
+      require('tailwindcss/nestisng'),
+      require('tailwindcss'),
       require('@minko-fe/postcss-pxtorem')({
         rootValue({ file }) {
           return file.includes('node_modules/react-vant') ? 8 : 16
