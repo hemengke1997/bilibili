@@ -1,10 +1,10 @@
-import clsx from 'clsx'
+import classnames from 'classnames'
 import styles from './index.module.css'
 
 export function Page() {
   return (
     <>
-      <div className={clsx('tw-italic', styles.pageA)}>
+      <div className={classnames('tw-italic', styles.pageA)}>
         <p>this is page A</p>
         <div className={styles.c1}>
           c1

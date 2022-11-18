@@ -6,7 +6,6 @@ import type { Env } from '@root/shared/env'
 import { publicTypescript } from 'vite-plugin-public-typescript'
 import timeReporter from 'vite-plugin-time-reporter'
 import browserslist from 'browserslist'
-
 import { configVisualizerConfig } from './visualizer'
 
 const browserslistConfig = browserslist.loadConfig({ path: '.' })

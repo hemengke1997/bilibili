@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import classnames from 'classnames'
 import { useEffect } from 'react'
 import { axiosRequest } from '@/service'
 
@@ -13,7 +13,7 @@ export function Page() {
 
   return (
     <>
-      <div className={clsx('tw-italic')}>this is index</div>
+      <div className={classnames('tw-italic')}>this is index</div>
     </>
   )
 }
