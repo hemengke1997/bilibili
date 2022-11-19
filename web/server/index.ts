@@ -26,7 +26,7 @@ wrapperEnv(env)
 
 const HOST = VITE_HOST
 
-const PORT = Number(process.env.PORT) || 9529
+const PORT = Number(process.env.PORT) || 9527
 
 let port = PORT
 
@@ -45,11 +45,6 @@ async function startServer() {
           },
           cors: true,
         },
-      })
-      viteDevServer.ws.on('error', (error) => {
-        catchError(error, () => {
-          listen(app)
-        })
       })
       app.use(viteDevServer.middlewares)
     })
@@ -80,6 +75,7 @@ async function startServer() {
   if (proxy) {
     const { createProxyMiddleware } = await import('http-proxy-middleware')
     const rewriteKey = `^${proxy}`
+
     app.use(
       proxy,
       createProxyMiddleware({

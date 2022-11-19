@@ -1,6 +1,9 @@
 import type { Application } from 'express'
-import { v1 } from './v1'
+import { bilibili } from './api.bilibili.com'
+import { main } from './main'
 
 export function router(app: Application) {
-  app.use('/v1', v1)
+  app.use('/bilibili', bilibili)
+
+  app.use('/main', main)
 }

@@ -24,9 +24,9 @@ export async function render(pageContext: PageContextBuiltIn & PageType.PageCont
 
   const { pageProps } = pageContext
   const { checkPlatform = true, isMobile = false } = pageProps
-  const title = pageProps?.title || 't'
-  const desc = pageProps?.description || 'd'
-  const keywords = pageProps?.keywords || 'k'
+  const title = pageProps?.title || 'vite-react-ssr-boilerplate'
+  const desc = pageProps?.description || 'description'
+  const keywords = pageProps?.keywords || 'keywords'
 
   const documentHtml = escapeInject/* html */ `<!DOCTYPE html>
   <html lang="zh-CN" is-mobile="${String(isMobile)}" check-platform='${String(checkPlatform)}'>

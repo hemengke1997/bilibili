@@ -26,11 +26,16 @@ html[is-mobile='true'] {
 }
 
 [hidden] {
-  display: none !important;
+  display: none;
 }
 
 i {
   display: inline-block;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 @keyframes spin {

@@ -8,6 +8,8 @@ import { router } from 'routes'
 import colors from 'picocolors'
 import { log } from 'utils/log'
 import normalizeUrl from 'normalize-url'
+import { logger } from 'middleware/logger'
+import { userAgent } from 'middleware/use-agent'
 
 const app = express()
 
@@ -44,6 +46,8 @@ app.all('*', (req, res, next) => {
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(session(getSessionConfig()))
+app.use(logger)
+app.use(userAgent)
 
 router(app)
 

@@ -1,18 +1,31 @@
 import classnames from 'classnames'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Button, Modal } from 'antd'
+import { Link } from '@/components/Link'
 import { axiosRequest } from '@/service'
 
 export function Page() {
-  const login = async () => {
-    await axiosRequest.get({
-      url: '/v1/login',
+  const bili = async () => {
+    const res = await axiosRequest.get({
+      url: '/main/round-sowing',
     })
+
+    console.log(res, 'res')
   }
 
-  useEffect(() => {}, [login()])
+  useEffect(() => {
+    bili()
+  }, [])
+
+  const [open, setOpen] = useState(false)
 
   return (
     <>
+      <Button onClick={() => setOpen(true)}>open modal</Button>
+      <Modal open={open} onCancel={() => setOpen(false)}>
+        this is content
+      </Modal>
+      <Link href='/a'>to A</Link>
       <div className={classnames('tw-italic')}>this is index</div>
     </>
   )

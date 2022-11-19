@@ -2,7 +2,7 @@ import normalize from 'normalize-path'
 import { Env } from './env'
 
 export function getBase() {
-  const base = `/base-url/`
+  const base = `/base-url/` // customize base url
   let mode = ''
   let p
 
