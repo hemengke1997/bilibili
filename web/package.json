@@ -86,6 +86,7 @@
     "modern-normalize": "^1.1.0",
     "ora": "^6.1.2",
     "postcss": "^8.4.19",
+    "postcss-simple-vars": "^7.0.1",
     "prompts": "^2.4.2",
     "rollup": "2.79.1",
     "rollup-plugin-visualizer": "^5.8.3",

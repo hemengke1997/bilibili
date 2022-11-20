@@ -41,11 +41,15 @@ async function startServer() {
         server: {
           middlewareMode: true,
           watch: {
-            ignored: ['**/tsconfig.*.json', '**/tsconfig.json'],
+            ignored: ['**/tsconfig.*'],
           },
           cors: true,
+          hmr: {
+            port: 24990,
+          },
         },
       })
+
       app.use(viteDevServer.middlewares)
     })
     app.set('etag', false)
@@ -118,7 +122,7 @@ async function startServer() {
 
       let html = httpResponse.body
 
-      if (!NODE_ENV || NODE_ENV !== 'development') {
+      if (!NODE_ENV && NODE_ENV !== 'development') {
         html = await legacyHtml(pageContext, html)
       }
 

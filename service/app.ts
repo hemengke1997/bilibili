@@ -1,6 +1,5 @@
+import type { ErrorRequestHandler } from 'express'
 import express from 'express'
-import session from 'express-session'
-import { getSessionConfig } from 'utils/getSessionConfig'
 import history from 'connect-history-api-fallback'
 import { loadEnv } from 'utils/loadEnv'
 import { wrapperEnv } from 'utils/env'
@@ -10,6 +9,11 @@ import { log } from 'utils/log'
 import normalizeUrl from 'normalize-url'
 import { logger } from 'middleware/logger'
 import { userAgent } from 'middleware/use-agent'
+import cors from 'cors'
+import { expressjwt } from 'express-jwt'
+import cookieParser from 'cookie-parser'
+import { setToken } from 'utils/token'
+import { StatusCode } from 'status-code-enum'
 
 const app = express()
 
@@ -17,41 +21,51 @@ const env = loadEnv(process.env.NODE_ENV, '.')
 
 wrapperEnv(env)
 
-const HOST = process.env.SERVICE_HOST
-const PORT = process.env.SERVICE_PORT
+const HOST = env.SERVICE_HOST
+const PORT = env.SERVICE_PORT
 
-// 响应头
-app.all('*', (req, res, next) => {
-  if (req.path !== '/') {
-    const { origin, referer } = req.headers
-    // https://developer.mozilla.org/en-US/docs/Web/HTTP
-    const allowOrigin = origin || referer || '*'
-    // cors
-    res.set({
-      'Access-Control-Allow-Origin': allowOrigin,
-      'Access-Control-Allow-Headers': ['Content-Type', 'Authorization', 'X-Requested-With'],
-      'Access-Control-Allow-Methods': ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
-      'Access-Control-Allow-Credentials': true,
-      'Content-Type': 'application/json; charset=utf-8',
-    })
-  }
-
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200)
-  } else {
-    next()
-  }
-})
-
+app.use(cookieParser())
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(session(getSessionConfig()))
 app.use(logger)
+app.use(history())
 app.use(userAgent)
 
-router(app)
+const handleRefreshToken: ErrorRequestHandler = (_err, req, res, next) => {
+  // token 过期处理
+  if (req.cookies.refreshToken && req.cookies.token) {
+    try {
+      const t = setToken(req, res, next)
+      if (t) {
+        return t
+      }
+      next()
+    } catch (e) {
+      next(e)
+    }
+  }
 
-app.use(history())
+  res.status(StatusCode.ClientErrorUnauthorized).end()
+}
+
+app.use(
+  expressjwt({
+    secret: env.SERVICE_JWT_SECRET,
+    algorithms: ['HS256'],
+    credentialsRequired: false,
+    getToken: (req) => {
+      // cookie
+      if (req.cookies.token) {
+        return req.cookies.token
+      }
+      return null
+    },
+  }),
+  handleRefreshToken,
+)
+
+router(app)
 
 app.listen(PORT, () => {
   const pathUrl = normalizeUrl(`http:\/\/${HOST}:${PORT}`, { normalizeProtocol: false })
