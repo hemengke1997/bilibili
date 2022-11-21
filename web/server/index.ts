@@ -10,7 +10,7 @@ import type { ViteDevServer } from 'vite'
 import { loadEnv } from 'vite'
 import { Env } from '@root/shared/env'
 import { getBase } from '@root/shared'
-import { wrapperEnv } from '@root/config/vite/utils/helper'
+import { injectEnv } from '@root/config/vite/utils/helper'
 import { log } from '../scripts/utils'
 import { legacyHtml } from './legacy'
 
@@ -22,7 +22,7 @@ const root = `${dir}/..`
 const env = loadEnv(process.env.NODE_ENV, root) as ImportMetaEnv
 const { VITE_PROXY, VITE_APIURL, VITE_HOST } = env
 
-wrapperEnv(env)
+injectEnv(env)
 
 const HOST = VITE_HOST
 

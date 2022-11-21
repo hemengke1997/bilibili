@@ -14,17 +14,18 @@ export function setToken(req: Request, res: Response, _next: NextFunction, body?
   } else {
     token = jwt.sign(body, SERVICE_JWT_SECRET, { expiresIn: tokenExpire })
   }
-
-  try {
-    jwt.verify(req.cookies.refreshToken, SERVICE_JWT_SECRET)
-  } catch {
-    // refreshToken过期
-    // 401
-    return res.status(StatusCode.ClientErrorUnauthorized).json({
-      code: StatusCode.ClientErrorUnauthorized,
-      message: 'Unauthorized',
-      data: null,
-    })
+  if (req.cookies.refreshToken) {
+    try {
+      jwt.verify(req.cookies.refreshToken, SERVICE_JWT_SECRET)
+    } catch {
+      // refreshToken过期
+      // 401
+      return res.status(StatusCode.ClientErrorUnauthorized).json({
+        code: StatusCode.ClientErrorUnauthorized,
+        message: 'Unauthorized',
+        data: null,
+      })
+    }
   }
 
   const refreshToken = jwt.sign({}, SERVICE_JWT_SECRET, { expiresIn: refreshTokenExpire })

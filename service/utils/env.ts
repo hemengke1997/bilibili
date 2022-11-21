@@ -20,7 +20,7 @@ export function isProd(): boolean {
   return getEnv() === Env.production
 }
 
-export function wrapperEnv(envConf: Record<string, any>) {
+export function injectEnv(envConf: Record<string, any>) {
   const ret: any = {}
 
   for (const envName of Object.keys(envConf)) {

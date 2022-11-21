@@ -4,5 +4,10 @@ declare namespace NodeJS {
     SERVICE_HOST: string
     SERVICE_PORT: string
     SERVICE_JWT_SECRET: string
+    SERVICE_MYSQL_HOST: string
+    SERVICE_MYSQL_PORT: number
+    SERVICE_MYSQL_USER: string
+    SERVICE_MYSQL_PWD: string
+    SERVICE_MYSQL_DB: string
   }
 }

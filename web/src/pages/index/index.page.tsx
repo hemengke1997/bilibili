@@ -1,6 +1,6 @@
 import classnames from 'classnames'
-import { useEffect, useState } from 'react'
-import { Button, Modal } from 'antd'
+import { useEffect } from 'react'
+import { Button } from 'antd'
 import { Link } from '@/components/Link'
 import { axiosRequest } from '@/service'
 import { useLoginModalStore } from '@/components/pc/LoginModal/hooks/useLoginModalStore'
@@ -14,7 +14,16 @@ export function Page() {
       url: '/user/login',
       data: {
         user_name: 'hemengke',
+        password: '12345',
       },
+    })
+
+    console.log(res, 'res')
+  }
+
+  const getUserInfo = async () => {
+    const res = await axiosRequest.get({
+      url: '/user/user-info',
     })
 
     console.log(res, 'res')
@@ -22,18 +31,26 @@ export function Page() {
 
   useEffect(() => {
     bili()
+    getUserInfo()
   }, [])
 
-  const [open, setOpen] = useState(false)
+  const register = async () => {
+    await axiosRequest.post({
+      url: '/user/register',
+      data: {
+        user_name: 'hemengke',
+        password: '123456',
+      },
+    })
+  }
 
   return (
     <>
       <Button type='primary' onClick={() => setVisible(true)}>
         open modal
       </Button>
-      <Modal open={open} onCancel={() => setOpen(false)}>
-        this is content
-      </Modal>
+
+      <Button onClick={register}>用户注册</Button>
       <Link href='/a'>to A</Link>
       <div className={classnames('tw-italic')}>this is index</div>
     </>

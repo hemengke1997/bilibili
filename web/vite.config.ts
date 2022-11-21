@@ -4,7 +4,7 @@ import type { ConfigEnv, UserConfig } from 'vite'
 import { loadEnv } from 'vite'
 import { setupVitePlugins } from './config/vite/plugins'
 import { setupRollupOptions } from './config/vite/rollupOptions'
-import { wrapperEnv } from './config/vite/utils/helper'
+import { injectEnv } from './config/vite/utils/helper'
 import type { Env } from './shared/env'
 import { getBase } from './shared'
 
@@ -19,7 +19,7 @@ export default ({ command, ssrBuild, mode }: ConfigEnv): UserConfig => {
 
   const env = loadEnv(mode, root) as ImportMetaEnv
 
-  wrapperEnv(env)
+  injectEnv(env)
 
   return {
     base: getBase(),
