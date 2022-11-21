@@ -20,7 +20,7 @@ export const handleRefreshToken: ErrorRequestHandler = (_err, req, res, next) =>
   res.status(StatusCode.ClientErrorUnauthorized).end()
 }
 
-export const auth: Handler = (req, res, next) => {
+export const auth: Handler = (...args) => {
   const { SERVICE_JWT_SECRET } = process.env
   expressjwt({
     secret: SERVICE_JWT_SECRET,
@@ -33,6 +33,5 @@ export const auth: Handler = (req, res, next) => {
       }
       return null
     },
-  })
-  next()
+  })(...args)
 }
