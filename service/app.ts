@@ -25,13 +25,13 @@ const PORT = env.SERVICE_PORT
 app.enable('trust proxy')
 app.use(helmet())
 app.set('port', env.PORT)
-app.use(logger('dev'))
 app.use(cookieParser())
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(history())
 app.use(userAgent)
+app.use(logger('dev'))
 app.use(apiLogger)
 
 await import('routes').then(({ router }) => {

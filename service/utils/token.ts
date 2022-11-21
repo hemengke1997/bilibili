@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { StatusCode } from 'status-code-enum'
+import { HttpCode } from './httpCode'
 
 const tokenExpire = '12h'
 const refreshTokenExpire = '3d'
@@ -20,8 +20,8 @@ export function setToken(req: Request, res: Response, _next: NextFunction, body?
     } catch {
       // refreshToken过期
       // 401
-      return res.status(StatusCode.ClientErrorUnauthorized).json({
-        code: StatusCode.ClientErrorUnauthorized,
+      return res.status(HttpCode.ClientErrorUnauthorized).json({
+        code: HttpCode.ClientErrorUnauthorized,
         message: 'Unauthorized',
         data: null,
       })

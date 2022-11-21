@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler, Handler } from 'express'
 import { expressjwt } from 'express-jwt'
-import { StatusCode } from 'status-code-enum'
+import { HttpCode } from 'utils/httpCode'
 import { setToken } from 'utils/token'
 
 export const handleRefreshToken: ErrorRequestHandler = (_err, req, res, next) => {
@@ -17,7 +17,7 @@ export const handleRefreshToken: ErrorRequestHandler = (_err, req, res, next) =>
     }
   }
 
-  res.status(StatusCode.ClientErrorUnauthorized).end()
+  res.status(HttpCode.ClientErrorUnauthorized).end()
 }
 
 export const auth: Handler = (...args) => {
