@@ -21,4 +21,6 @@ const userModel = seq.define('user', {
   },
 })
 
+userModel.sync({ force: true })
+
 export { userModel }

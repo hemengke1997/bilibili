@@ -14,7 +14,7 @@ export function Page() {
       url: '/user/login',
       data: {
         user_name: 'hemengke',
-        password: '12345',
+        password: '123456',
       },
     })
 
