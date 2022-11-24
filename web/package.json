@@ -15,6 +15,7 @@
     "release": "tsx scripts/release",
     "report": "cross-env REPORT=true vite build",
     "bundle:server": "tsx scripts/bundleServer",
+    "bundle:pm2": "tsx scripts/bundlePm2",
     "server:local": "cross-env NODE_ENV=test tsx watch server/index.ts",
     "//": "以下部署相关",
     "pm2:dev": "npx --yes --ignore-scripts pnpm i && cross-env NODE_ENV=development tsx server/pm2 --tsconfig tsconfig.pm2.json",

@@ -95,7 +95,7 @@ async function startServer() {
   // support html
   app.use((req, _, next) => {
     const url = req.originalUrl
-    req.originalUrl = url.replace(/\.html?$/gi, '')
+    req.originalUrl = url.replace(/(\.html?)$/gi, '')
     next()
   })
 

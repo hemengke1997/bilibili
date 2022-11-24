@@ -45,18 +45,18 @@ async function runPm2() {
               log.info(`\n[pm2]: restart`)
               pm2.reload(processName, () => {
                 log.success(`\n[pm2]: reload success`)
-                return pm2.disconnect()
+                // return pm2.disconnect()
               })
-              return pm2.disconnect()
+              // return pm2.disconnect()
             }
 
             log.success(`\n[pm2]: start success`)
-            pm2.disconnect()
+            // pm2.disconnect()
           },
         )
       } else {
         log.success(`\n[pm2]: reload success`)
-        pm2.disconnect()
+        // pm2.disconnect()
       }
     })
   })
