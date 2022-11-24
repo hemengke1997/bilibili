@@ -39,6 +39,7 @@ await import('routes').then(({ router }) => {
 })
 
 const handleError: ErrorRequestHandler = (err, req, res, next) => {
+  console.log(err, 'err')
   res.status(500).json(err)
   next()
 }
