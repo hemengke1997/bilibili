@@ -21,6 +21,8 @@ RUN \
   else echo "Lockfile not found." && pnpm i; \
   fi
 
+
+
 FROM node:18-alpine3.16 AS builder
 
 ARG node_env
@@ -42,6 +44,8 @@ RUN \
   fi
 
 
+
+
 FROM node:18-alpine3.16 AS runner
 
 WORKDIR /app
@@ -54,4 +58,4 @@ ENV PORT 9527
 
 EXPOSE ${PORT}
 
-ENTRYPOINT [ "node", "server/index.js" ]
+ENTRYPOINT [ "node", "server/pm2.js" ]
